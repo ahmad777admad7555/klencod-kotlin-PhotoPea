@@ -1,16 +1,37 @@
-// Root build.gradle (Kotlin)
-// ملاحظة: repositories معرّفة في settings.gradle فقط.
-
 plugins {
-    id 'com.android.application' version '8.5.2' apply false
-    id 'com.android.library' version '8.5.2' apply false
-    id 'org.jetbrains.kotlin.android' version '1.9.20' apply false
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
 }
 
-subprojects {
-    project.evaluationDependsOn(":app")
+android {
+    namespace 'com.ahmedaldheeb.photopea'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.ahmedaldheeb.photopea"
+        minSdk 21
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
+    }
 }
 
-tasks.register("clean", Delete) {
-    delete rootProject.buildDir
+dependencies {
+    // لا تبعيات مطلوبة
 }
